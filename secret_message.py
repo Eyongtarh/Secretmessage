@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 
 def print_secret_message(doc_url):
     """
-    Downloads a published Google Doc containing:
-        x-coordinate | character | y-coordinate
-
-    Builds the character grid and prints the secret message.
+    - Retrieve Google Doc containing: x-coordinate,
+    character and y-coordinate.
+    - Construct the character grid.
+    - Print the secret message.
     """
     try:
         response = requests.get(doc_url, timeout=30)
