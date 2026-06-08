@@ -23,7 +23,7 @@ def print_secret_message(doc_url):
             continue
         try:
             x = int(cols[0].get_text(strip=True))
-            char = cols[1].get_text(strip=False)
+            char = cols[1].get_text()
             y = int(cols[2].get_text(strip=True))
             points[(x, y)] = char
         except ValueError:
@@ -31,8 +31,8 @@ def print_secret_message(doc_url):
     if not points:
         print("No coordinate data found.")
         return
-    max_x = max(x for x, y in points.keys())
-    max_y = max(y for x, y in points.keys())
+    max_x = max(x for x, _ in points)
+    max_y = max(y for _, y in points)
     grid = [
         [" " for _ in range(max_x + 1)]
         for _ in range(max_y + 1)
@@ -49,4 +49,5 @@ if __name__ == "__main__":
         "2PACX-1vSvM5gDlNvt7npYHhp_XfsJvuntUhq184By5xO_pA4b_"
         "gCWeXb6dM6ZxwN8rE6S4ghUsCj2VKR21oEP/pub"
     )
+
     print_secret_message(url)
